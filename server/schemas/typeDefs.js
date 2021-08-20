@@ -43,3 +43,4 @@ type Mutation {
     # DO I NEED A removeAuthor?
 }
 `
+module.exports = typeDefs;
