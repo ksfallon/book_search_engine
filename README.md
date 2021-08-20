@@ -5,21 +5,21 @@ Link to [Heruko page]().
 Link to [Budget Track Github page](https://github.com/ksfallon/book_search_engine).
 
 ### **TABLE OF CONTENTS:**
-1. [Back-End Changes](#1-back-end-changes)
-1A. [Server.js](#1A-server-js)
-1B. [Schemas](#1B-schemas)
-2. [Front-End Changes](#1-front-end-changes)
-2A. [App.js](#5-app-js)
+1. [Backend Changes](#1-backend-changes)
+2. [Server-js](#2-server-js)
+3. [Schemas](#3-schemas)
+4. [Frontend Changes](#4-frontend-changes)
+5. [App-js](#5-app-js)
 
-# 1. Back-End Changes
+# 1. Backend Changes
 
-## 1A. Server.js
+## 2. Server-js
 
-## 1A. Schemas
+## 3. Schemas
 
-# 2. Front-End Changes
+# 4. Frontend Changes
 
-## 2A. App.js
+## 5. App-js
 
 <!-- STILL NEED TO GET LICENSED -->
 
