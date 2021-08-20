@@ -15,10 +15,10 @@ const resolvers = {
     },
     Mutation: {
         addUser: async ({parent, args}) => {
-          const user = await User.create(args);
-          const token = signToken(user);
+            const user = await User.create(args);
+            const token = signToken(user);
 
-          return {token, user};
+            return {token, user};
         },
 
         login: async (parent, {email, password}) => {
@@ -38,6 +38,35 @@ const resolvers = {
 
             return {token, user};
         },
+
+        saveBook: async (parent, {data}, context) => {
+
+            if (context.user) {
+                const dataAdd = await User.findByIdAndUpdate(
+                    {_id: context.user._id}, 
+                    {$push: {savedBooks: data}},
+                    { new: true},
+                    );
+                return dataAdd;
+            }
+
+            throw new AuthenticationError('GOTTA LOG IN TO SAVE!')
+        },
+    
+        removeBook: async (parent, {data}, context) => {
+
+        if (context.user) {
+            const dataDelete = await User.findById(
+                {_id: context.user._id}, 
+                {$pull: {savedBooks: data}},
+                { new: true},
+                );
+            return dataDelete;
+        }
+
+        throw new AuthenticationError('GOTTA LOG IN TO DELETE!')
+        },
+
     }
 }
 
