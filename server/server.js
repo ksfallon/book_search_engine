@@ -17,6 +17,15 @@ server.applyMiddleware({ app }); // Now need our Server.Schemas to call on the m
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// mongoose.connect(
+//   process.env.MONGODB_URI || "mongodb://localhost/budget", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false
+// }
+// );
+
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
