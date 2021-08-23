@@ -17,7 +17,7 @@ Link to [Budget Track Github page](https://github.com/ksfallon/book_search_engin
 Implement the Apollo Server and apply it to the Express server as middleware
 
 Update the auth middleware function to work with the GraphQL API.
-## 3. Schemas
+## 3. Schemas -
 
 # 4. Frontend Changes
 
