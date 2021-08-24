@@ -13,7 +13,7 @@ type User {
 type Book {
     _id: ID!
     bookId: String!
-    authors: []
+    authors: String!
     description: String!
     title: String!
     image: String
@@ -39,7 +39,7 @@ type Query {
 type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBook(authors: String!, description: String!, bookId: String!, title: String!, link: String!, $image: String!): Book
+    saveBook(authors: String!, description: String!, bookId: String!, title: String!, link: String!, image: String!): Book
     removeBook(bookId: ID!): Book
 }
 `
