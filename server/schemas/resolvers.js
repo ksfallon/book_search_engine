@@ -14,6 +14,7 @@ const resolvers = {
         },
     },
     Mutation: {
+    //ADDING a new USER - need to create
         addUser: async ({parent, args}) => {
             const user = await User.create(args);
             const token = signToken(user);
@@ -21,6 +22,7 @@ const resolvers = {
             return {token, user};
         },
 
+    //LOGINING IN A USER, AND MAKING SURE USERNAME IS A SAVED USERNAME AND THEN THAT THE PASSWORD IS THE CORRECT ONE.    
         login: async (parent, {email, password}) => {
             const user = await User.findOne({email})
             
@@ -39,7 +41,8 @@ const resolvers = {
             return {token, user};
         },
 
-        saveBook: async (parent, {data}, context) => {
+    // ADDING A BOOK TO A USER'S SAVED BOOKS
+        saveBook: async (parent, {data}, context) => { //data = args here, it is all of the parameters for books - title, author, description, etc...
 
             if (context.user) {
                 const dataAdd = await User.findByIdAndUpdate(
@@ -53,6 +56,7 @@ const resolvers = {
             throw new AuthenticationError('GOTTA LOG IN TO SAVE!')
         },
     
+    // REMOVING A BOOK FROM A USER'S SAVED BOOKS
         removeBook: async (parent, {data}, context) => {
 
         if (context.user) {
