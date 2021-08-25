@@ -9,7 +9,7 @@ import {SAVE_BOOK} from '../utils/mutations';
 
 const SearchBooks = () => {
     // Calling SAVEBOOK from mutation.js SAVE_BOOK
-    const [saveBook, { data, loading, error }] = await useMutation(SAVE_BOOK);
+    const [saveBook, { data, loading, error }] = useMutation(SAVE_BOOK);
       // create state for holding returned google api data
     const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data

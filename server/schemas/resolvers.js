@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async (parent, args, context) => {
+        me: async (parent, args, context) => {
 
             if (context.user) { 
                 const userData = await User.findOne({_id: context.user._id}).select('-__v -password'); // __v is the version key
@@ -22,7 +22,7 @@ const resolvers = {
             return {token, user};
         },
 
-    //LOGINING IN A USER, AND MAKING SURE USERNAME IS A SAVED USERNAME AND THEN THAT THE PASSWORD IS THE CORRECT ONE.    
+    //LOGINNING IN A USER, AND MAKING SURE USERNAME IS A SAVED USERNAME AND THEN THAT THE PASSWORD IS THE CORRECT ONE.    
         login: async (parent, {email, password}) => {
             const user = await User.findOne({email})
             
