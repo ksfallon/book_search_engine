@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import {GET_ME} from '../utils/queries'
+// import {GET_ME} from '../utils/queries'
 import {SAVE_BOOK} from '../utils/mutations';
 
 const SearchBooks = () => {
@@ -72,7 +72,7 @@ const SearchBooks = () => {
         try {
             // const response =  saveBook(bookToSave, token);
             const {data} = await saveBook({ //CHECK
-                variables: { book: {bookToSave}}
+                variables: { bookData: {bookToSave}}
             })
 
             if (!bookToSave) {

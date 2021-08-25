@@ -12,35 +12,13 @@ const SavedBooks = () => {
 
     const [removeBook, {error}] = useMutation(REMOVE_BOOK)
 
-    const [userData, setUserData] = useState({});
+    // const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
-    const userDataLength = Object.keys(userData).length;
+    // const userDataLength = Object.keys(userData).length;
 
-    useEffect(() => { //DO WE NOT NEED THIS FUNCTION AT ALL BECAUSE WE CAN JUST DO IT IN GET_ME??
-        const getUserData = async () => {
-            try {
-                const token = Auth.loggedIn() ? Auth.getToken() : null;
+    const userData = data?.me || {} //.me refers to the data for the user OR an empty object
 
-                if (!token) {
-                    return false;
-                }
-
-                const response = await getMe(token);
-
-                if (!response.ok) {
-                    throw new Error('something went wrong!');
-                }
-
-                const user = await response.json();
-                setUserData(user);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-
-        getUserData();
-    }, [userDataLength]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
     const handleDeleteBook = async (bookId) => {
@@ -51,14 +29,9 @@ const SavedBooks = () => {
         }
 
         try {
-            const response = await deleteBook(bookId, token);
-
-            if (!response.ok) {
-                throw new Error('something went wrong!');
-            }
-
-            const updatedUser = await response.json();
-            setUserData(updatedUser);
+            const {data} = await removeBook({
+                variables: {bookId}
+            });
             // upon success, remove book's id from localStorage
             removeBookId(bookId);
         }   catch (err) {
@@ -67,7 +40,7 @@ const SavedBooks = () => {
     };
 
 //  NEED TO ADD THE LOADING INFO HERE
-    if (!userDataLength) {
+    if (loading) {
         return <h2>LOADING...</h2>;
     }
 
